@@ -10,6 +10,7 @@
 2. 使用`cv2.cvtColor()`将彩色 BGR 图像转为灰度图。
 特征提取一般在灰度图像上完成，减少计算量，彩色图仅用于最终拼接显示。
 <img width="448" height="224" alt="image" src="https://github.com/user-attachments/assets/40955dea-f463-421c-8c29-00fa4ccbe8ea" />
+
 ### 步骤 3：SIFT 关键点检测与特征描述子提取
 1. 创建 SIFT 检测器对象`sift = cv2.SIFT_create()`；
 2. 调用`detectAndCompute()`，分别对灰度图 a、灰度图 b 提取关键点 kp和特征描述子 des
