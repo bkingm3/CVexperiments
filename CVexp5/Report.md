@@ -14,16 +14,21 @@
 - `torch.optim`：优化算法工具，本实验选用 Adam 优化器更新网络权重；
 - `torchvision`：处理计算机视觉数据集，加载 MNIST 并完成图像格式转换；
 - `matplotlib.pyplot`：用于绘制训练指标曲线与卷积层输出的特征图像。
+- 
 <img width="371" height="104" alt="image" src="https://github.com/user-attachments/assets/2b99be0a-3d94-4cb8-a30d-6f9d7e245305" />
+
 ### 2. 配置超参数与计算设备
 
 设置批次大小 batch_size 为 512，每次迭代同时送入 512 个样本参与计算。设备自动判断环境，如果机器支持 CUDA 则使用 GPU 进行加速运算，否则回退到 CPU 执行。
+
 <img width="425" height="59" alt="image" src="https://github.com/user-attachments/assets/4d6a59ab-03f5-4453-83fc-58977694eb9f" />
+
 ### 3. 数据集加载与预处理
 
 MNIST 手写数据集包含 0‑9 共十类手写灰度数字。使用`DataLoader`封装数据集，自动实现分批读取。预处理仅执行`ToTensor()`，将图片由 0‑255 像素映射到 0‑1 区间张量。训练集开启 shuffle 打乱样本顺序，避免模型记住样本顺序带来的学习偏差；测试集不需要训练，同样分批加载用于评估模型泛化能力。
 
 <img width="453" height="292" alt="image" src="https://github.com/user-attachments/assets/800a8567-6d73-462f-8292-69baa7e5229f" />
+
 数据集由 60000 条训练样本与 10000 条测试样本组成，每张图像均为 28×28 的单通道灰度图。
 ### 4. 搭建 LeNet 网络模型
 
@@ -35,7 +40,9 @@ LeNet 是早期成功应用于手写数字识别的卷积网络。输入为 1 �
 3. 将多维特征图展平为一维向量，维度为 16×5×5。
 4. 两层全连接层先后将特征映射到 120、84 维，每层之后使用 Sigmoid 激活函数。
 5. 最后的分类全连接层输出 10 个维度，对应 0‑9 十个数字类别。
+6. 
 <img width="383" height="473" alt="image" src="https://github.com/user-attachments/assets/74af5459-281d-482b-b8b0-cb3211f06b27" />
+
 ### 5. 模型训练与测试评估
 
 整个实验一共迭代 30 轮。每一轮先完成全部训练集迭代，再在测试集上做评估。
@@ -48,9 +55,13 @@ LeNet 是早期成功应用于手写数字识别的卷积网络。输入为 1 �
 4. 反向传播求解梯度，优化器更新网络全部参数。
 
 测试阶段切换为`model.eval()`评估模式，配合`torch.no_grad()`关闭梯度计算，节约内存开销，只做前向推理。遍历全部测试样本，累计测试损失，对比预测类别与真实标签统计正确样本数，计算每一轮测试集平均损失和分类准确率，保存指标并打印输出。
+
 <img width="457" height="391" alt="image" src="https://github.com/user-attachments/assets/67e403b4-793e-4edd-9ab4-013c31c4e3ce" />
+
 <img width="198" height="433" alt="image" src="https://github.com/user-attachments/assets/9d36c9f4-2552-4f7a-a9c6-175eedbe1c82" />
+
 将保存的测试损失、准确率数据绘制成变化曲线，直观观察模型随迭代的变化趋势：
+
 <img width="296" height="250" alt="image" src="https://github.com/user-attachments/assets/11a4ff8d-3fcb-4de6-9527-290b97060dfe" />
 
 <img width="521" height="207" alt="image" src="https://github.com/user-attachments/assets/1d27e105-d041-435b-8752-b6f5997be6b0" />
