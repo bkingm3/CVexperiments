@@ -58,9 +58,11 @@ LeNet 是早期成功应用于手写数字识别的卷积网络。输入为 1 �
 ### 6. 卷积层特征图可视化
 
 为直观观察卷积网络内部发生的变化，从测试集选取少量样本，提取经过 Sigmoid 激活后的第一层、第二层卷积输出。对通道维度求和压缩，将多维特征图转为灰度图像展示，对比原始输入图片观察特征提取效果。
+
 <img width="374" height="396" alt="image" src="https://github.com/user-attachments/assets/c439f572-38ac-482a-a357-d3dab06232b8" />
 
 <img width="497" height="467" alt="image" src="https://github.com/user-attachments/assets/fe97b4b5-4ae0-421c-bac0-ed12d62176d4" />
+
 图像三行依次是原始手写数字、第一层卷积输出特征、第二层卷积输出特征。
 
 ## 三、实验结果与分析
